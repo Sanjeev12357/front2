@@ -1,50 +1,94 @@
 export const links = [
   {
-    name: "Men",
+    id: 1,
+    name: "Workout Tip & Tricks",
     submenu: true,
     sublinks: [
       {
-        Head: "Topwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-         
-        ],
+        Head: "",
+        sublink: [],
       },
-      
-
-
     ],
   },
   {
-    name: "Women",
+    id: 2,
+    name: "Workout Modules.",
     submenu: true,
     sublinks: [
       {
-        Head: "Topwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          
-        ],
+        Head: "Weight loss & Gain",
+        sublink: [],
       },
-    
+      {
+        Head: "Fat loss & Gain",
+        sublink: [],
+      },
+      {
+        Head: "Muscles Loss  & Gain",
+        sublink: [],
+      },
+      {
+        Head: "Mass Gain",
+        sublink: [],
+      },
+      {
+        Head: "Transformation",
+        sublink: [],
+      },
     ],
   },
   {
-    name: "Kid's",
+    id: 3,
+    name: "Exercising Modules",
     submenu: true,
     sublinks: [
       {
-        Head: "Topwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        
-        ],
+        Head: "Beginner friendly",
+        sublink: [],
       },
-     
+      {
+        Head: "Intermediate",
+        sublink: [],
+      },
+      {
+        Head: "Advanced",
+        sublink: [],
+      },
+      {
+        Head: "Yoga & Meditation",
+        sublink: [],
+      },
+      {
+        Head: "Special Case",
+        sublink: [],
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "Home Workout",
+    submenu: true,
+    sublinks: [
+      {
+        Head: "Basic",
+        sublink: [],
+      },
+      {
+        Head: "Daily",
+        sublink: [],
+      },
+      {
+        Head: "Intermediate",
+        sublink: [],
+      },
+      {
+        Head: "Advance",
+        sublink: [],
+      },
+      {
+        Head: "According to need",
+        sublink: [],
+      },
     ],
   },
 ];

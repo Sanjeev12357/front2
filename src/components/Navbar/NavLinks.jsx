@@ -1,106 +1,71 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { links } from "./Mylinks";
+import { IoIosArrowDown } from "react-icons/io";
 
 const NavLinks = () => {
-  const [heading, setHeading] = useState("");
-  const [subHeading, setSubHeading] = useState("");
+  const [heading,setHeading] = useState(null);
+ 
+
   return (
     <>
-      {links.map((link) => (
-        <div>
-          <div className="px-3 text-left md:cursor-pointer group">
-            <h1
-              className="py-7 hover:font-bold hover:scale-105 transition-all duration-300 ease-in-out flex justify-between font-light items-center md:pr-0 pr-5 group"
-              onClick={() => {
-                heading !== link.name ? setHeading(link.name) : setHeading("");
-                setSubHeading("");
-              }}
-            >
+      <div className="md:flex hidden relative flex-col mt-[50px] items-center justify-between">
+      <div className="flex flex-col items-center justify-center md:flex-row mb-[20px]">
+      {links.map((link,i) => (
+
+        <div  onClick={()=>setHeading(i + 1)} className="font-light text-lg mr-8 hover:font-semibold duration-300 cursor-pointer ease-in-out transition-all hover:scale-105">
+        {link.name}
+       
+        </div>
+      ))}
+      </div>
+      <div className="flex ">
+        {links.map((link,i) => (
+          <div
+          className="flex absolute left-0 h-[100px]"
+          >
+          {link.id === heading ? link.sublinks.map((sublink) => (
+            <div className="mr-4 font-extralight hover:text-blue-500 duration-300 transition-all ease-in-out">
+            {sublink.Head}
+            </div>
+          )) : null}
+          </div>
+        ))}
+      </div>
+      </div>
+
+      <div className="md:hidden flex">
+      <div className="flex flex-col items-center justify-center w-full">
+        {links.map((link, i) => (
+          <div
+            key={i}
+            onClick={() => setHeading(heading === i ? null : i)}
+            className="font-light text-lg mr-8 mb-2 cursor-pointer hover:font-semibold duration-300 ease-in-out transition-all hover:scale-105"
+          >
+            <div className="flex items-center justify-between w-full">
               {link.name}
-              <span className="text-xl md:hidden inline">
-                <ion-icon
-                  name={`${
-                    heading === link.name ? "chevron-up" : "chevron-down"
-                  }`}
-                ></ion-icon>
-              </span>
-              <span className="text-xl md:mt-1 md:ml-2  md:block hidden group-hover:rotate-180 transition-all duration-500 ease-linear group-hover:-mt-2">
-                <ion-icon name="chevron-down"></ion-icon>
-              </span>
-            </h1>
-            {link.submenu && (
-              <div>
-                <div className="absolute transition-all duration-500 ease-in-out top-25 hidden group-hover:md:block hover:md:block">
-                  
-                  <div className="bg-whitetransition-all duration-500 ease-in-out p-5 flex items-center justify-center ">
-                    {link.sublinks.map((mysublinks) => (
-                      <div className="flex transition-all h-[50px] duration-500 ease-in-out items-center justify-between">
-                      
-                        {mysublinks.sublink.map((slink) => (
-                          <li className="text-sm hover:text-blue-500 font-light mt-[-20px] transition-all duration-1000 ease-linear pl-10 text-gray-600 my-2.5">
-                            <Link
-                              to={slink.link}
-                              className="hover:text-primary"
-                            >
-                              {slink.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </div>
-                    ))}
+              <IoIosArrowDown
+                className={`transform ${
+                  heading === i ? "rotate-180" : ""
+                } transition-transform`}
+              />
+            </div>
+            {heading === i && (
+              <div className="flex cursor-pointer flex-col ml-6 mt-2">
+                {link.sublinks.map((sublink, j) => (
+                  <div
+                    key={j}
+                    className="font-extralight  cursor-pointer hover:text-blue-500 duration-300 transition-all ease-in-out"
+                  >
+                    {sublink.Head}
                   </div>
-                </div>
+                ))}
               </div>
             )}
           </div>
-          {/* Mobile menus */}
-          <div
-            className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
-          `}
-          >
-            {/* sublinks */}
-            {link.sublinks.map((slinks) => (
-              <div>
-                <div>
-                  <h1
-                    onClick={() =>
-                      subHeading !== slinks.Head
-                        ? setSubHeading(slinks.Head)
-                        : setSubHeading("")
-                    }
-                    className="py-4 pl-7 font-semibold md:pr-0 pr-5 flex justify-between items-center md:pr-0 pr-5"
-                  >
-                    {slinks.Head}
-
-                    <span className="text-xl md:mt-1 md:ml-2 inline">
-                      <ion-icon
-                        name={`${
-                          subHeading === slinks.Head
-                            ? "chevron-up"
-                            : "chevron-down"
-                        }`}
-                      ></ion-icon>
-                    </span>
-                  </h1>
-                  <div
-                    className={`${
-                      subHeading === slinks.Head ? "md:hidden" : "hidden"
-                    }`}
-                  >
-                    {slinks.sublink.map((slink) => (
-                      <li className="py-3 pl-14">
-                        <Link to={slink.link}>{slink.name}</Link>
-                      </li>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
     </>
   );
 };
