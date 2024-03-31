@@ -1,0 +1,7 @@
+.splide__progress {
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  }
+  
+  .splide__progress__bar {
+    background-color: #fff; /* White progress bar */
+  }
